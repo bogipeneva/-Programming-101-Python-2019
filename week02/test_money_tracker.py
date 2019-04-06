@@ -96,7 +96,7 @@ class TestMoneyTracker(unittest.TestCase):
         date = '24-03-2018'
         categorie = 'Deposit'
         money = 200
-        expected_result = (200, 'Deposit')
+        expected_result = [(200, 'Deposit')]
         self.assertEqual(money_tracker.add_income(categorie, money, date, expr), expected_result)
 
     def test_add_income_when_is_passed_date_that_exist_then_save_incomes_there_and_return_them(self):
@@ -112,7 +112,7 @@ class TestMoneyTracker(unittest.TestCase):
         date = '24-03-2018'
         categorie = 'Food'
         money = 200
-        expected_result = (200, 'Food')
+        expected_result = [(200, 'Food')]
         self.assertEqual(money_tracker.add_expense(categorie, money, date, expr), expected_result)
 
     def test_add_expense_when_is_passed_date_that_exist_then_save_expense_there_and_return_them(self):
