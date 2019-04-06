@@ -95,7 +95,7 @@ def add_income(income_category, money, date, all_user_data):
         else:
             all_user_data[key].update({'income':[(money, income_category)]})
     else:
-        all_user_data.update({key:{'income':(money, income_category)}})
+        all_user_data.update({key:{'income':[(money, income_category)]}})
     return all_user_data[key]['income']
 
 
@@ -107,19 +107,22 @@ def add_expense(expense_category, money, date, all_user_data):
         else:
             all_user_data[key].update({'expense':[(money, expense_category)]})
     else:
-        all_user_data.update({key:{'expense':(money, expense_category)}})
+        all_user_data.update({key:{'expense':[(money, expense_category)]}})
     return  all_user_data[key]['expense']
 
 def main():
   
     file = open('money_tracker.txt')
     tuple_of_lines = tuple(file)
+    print(tuple_of_lines)
     key = tuple_of_lines[0]
     key = key[:len(key) - 1]
     val = {}
     all_user_data = {}
     for line in tuple_of_lines[1:]:
         current_line = line.split(', ')
+        if line == '\n':
+            continue
         if line[0] == '=' :
             all_user_data.update({key: val})
             key = line[:len(line) - 1]
@@ -188,11 +191,11 @@ def main():
                 open('money_tracker.txt', "w").close()
                 f = open('money_tracker.txt', "a")
                 for keys, values in all_user_data.items():
-                    print(all_user_data.items())
                     f.writelines(keys+'\n')
                     for keys1, values1 in all_user_data[keys].items():
                         for i in range(len(values1)):
                             f.writelines(str(values1[i][0])+', '+values1[i][1]+', '+'New'+' '+keys1+'\n')
+                print(all_user_data)
                 break
 
 if __name__ =='__main__':

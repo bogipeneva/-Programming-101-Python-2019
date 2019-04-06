@@ -1,6 +1,9 @@
+
+=== 10-02-2020 ===
+400.0, add, New income
+600.0, ty, New income
+
 === 22-03-2019 ===
-760.0, Salary, New income
-1010.0, deposit, New income
 5.5, Eating Out, New expense
 34.0, Clothes, New expense
 41.79, Food, New expense
@@ -9,8 +12,11 @@
 14.0, Pets, New expense
 112.4, Bills, New expense
 21.5, Transport, New expense
+760.0, Salary, New income
+1010.0, deposit, New income
 === 23-03-2019 ===
-50.0, Savings, New income
-200.0, Deposit, New income
+600.0, food, New expense
 5.0, Sports, New expense
 15.0, Food, New expense
+50.0, Savings, New income
+200.0, Deposit, New income
