@@ -1,0 +1,6 @@
+=== 23-03-2019 ===
+888.0, food, New income
+50.0, Savings, New income
+200.0, Deposit, New income
+5.0, Sports, New expense
+

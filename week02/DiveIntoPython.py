@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, '/home/helious/bogiPython/week01')
+sys.path.insert(0, '/home/helious/python101/week01')
 
 def gas_stations(distance, tank_size, stations):
     get_stations_in_route = []

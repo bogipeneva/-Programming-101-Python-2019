@@ -1,6 +1,6 @@
 
 import sys
-sys.path.insert(0, '/home/helious/bogiPython/week01')
+sys.path.insert(0, '/home/helious/python101/week01')
 
 def anagrams():
     
