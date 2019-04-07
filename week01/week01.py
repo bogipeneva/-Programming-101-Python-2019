@@ -260,45 +260,7 @@ def max_consecutive(items):
 
     return max_result
 
-'''
-x = [-1, -1, -1, 0, 0, 1, 1, 1]
 
-y = [-1, 0, 1, -1, 1, -1, 0, 1 ]
-
-def search_in_matrix(matrix, row, col, word):
-
-
-    if matrix[row][col] != word[0]:
-        return False; 
-  
-    length = len(word) 
-
-    for dir in range(8):
-        rd = row + x[dir]
-        cd = col + y[dir]
-
-        for k in range(1, length):
-            if rd >= len(matrix) or cd >= len(matrix[0]): 
-                break
-            if matrix[rd][cd] != word[k]:
-                break
-            rd = rd + x[dir]
-            cd = cd + y[dir]
-        print(k)
-        if k == length:
-            return True 
-
-    return False
-
-
-def word_count(matrix, word): 
-    count = 0
-    for row in range(1, len(matrix)):
-       for col in range(1, len(matrix[0])):
-          if search_in_matrix(matrix, row, col, word):
-             count = count + 1
-    return count
-'''
 def number_of_words(string, word):
     normal = string
     reverse = reverse_string(string)
