@@ -42,7 +42,7 @@ def main():
     index = 0
     for el in gen_object:
         key = input()
-        if key == ' \n':
+        if key == ' ':
             print(el)
         else:
             break
