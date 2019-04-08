@@ -1,4 +1,7 @@
 
+import random
+from random import choice
+import string
 import os, sys
 
 
@@ -34,18 +37,44 @@ def book_reader(list_of_files):
         for chapter in result:
             yield chapter
 
+def word_generator(length=8, chars=string.ascii_letters + string.digits):
+    return ''.join([choice(chars) for i in range(length)])
+
+def words_generator(word_range):
+    return ' '.join([word_generator(random.randint(1,20)) for i in word_range])
+
+def book_generator(chapters_count, chapter_length):
+    #TODO да го направя да генерира различни файлове + номерацията на текста 
+    path = '/home/helious/python101/week06/Book/book'
+
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+    buff = ''
+
+    with open(os.path.join(path, '003.txt'), 'a') as temp_file:
+        for chapter in range(1, chapters_count+1):
+            chapter_to_include = 'Chapter '+ str(chapter)+'\n'
+            buff += chapter_to_include
+            buff += words_generator(chapter_length)
+            buff += '\n'
+            temp_file.write(buff)
+
+
 def main():
-    path = "/home/helious/bogiPython/week06/Book/book"
+    
+    path = "/home/helious/python101/week06/Book/book"
     dirs = os.listdir(path)
     gen_object = book_reader(dirs)
-
-    index = 0
     for el in gen_object:
         key = input()
-        if key == ' \n':
+        if key == ' ':
             print(el)
         else:
             break
+            
+    book = book_generator(5, range(5, 10))
+
 
 
 

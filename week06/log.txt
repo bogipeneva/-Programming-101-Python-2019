@@ -8,3 +8,9 @@ get_low was called at 2019-04-06 14:21:54
 decorated_func was called at 2019-04-06 14:46:53
 get_low was called at 2019-04-06 14:50:11
 get_low was called at 2019-04-06 14:50:12
+get_low was called at 2019-04-08 11:06:59
+get_low was called at 2019-04-08 11:07:02
+get_low was called at 2019-04-08 11:07:03
+get_low was called at 2019-04-08 11:07:04
+get_low was called at 2019-04-08 11:07:36
+get_low was called at 2019-04-08 11:07:37
