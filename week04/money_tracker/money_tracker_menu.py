@@ -1,58 +1,71 @@
-from money_tracker_OO import *
+from money_tracker import MoneyTracker
+from category import *
+from parse_money_tracker_data import *
+from aggregated_money_tracker import *
 
 
+class MoneyTrackerMenu:
+    def __init__(self,AggregatedObject):
+        self.AggregatedObject=AggregatedObject
+        self.MoneyTrackerObject = MoneyTracker(self.AggregatedObject)
+    def option(self):
+        flag=True
+        while flag:
+            print("Choose one of the following options to continue:")
+            print("1 - show all data")
+            print("2 - show data for specific date")
+            print("3 - show expenses, ordered by categories")
+            print("4 - add new income")
+            print("5 - add new expense")
+            print("6 - exit")
 
-class Menu():#TODO да оправя менюто!
-    @staticmethod
-    def call_method_by_option(number, money_tracker_object):
+            choice=input()
+            if choice =='1':
+                 print(self.MoneyTrackerObject.get_all_data())
 
-        if number < 1 or number >6:
-            raise ValueError("Oops!  That was not number between 1 and 6.  Try again...")
+            if choice =='2':
+                date=input()
+                print(self.MoneyTrackerObject.get_data_per_date(date))
 
-        if number == '1':
-            print(money_tracker_object.get_all_data())
-        elif number == '2':
-            print('Choose data:')
-            date = input()
-            print(money_tracker_object.get_data_per_date(date))
-        elif number == '3':
-            print(money_tracker_object.get_expenses_ordered_by_categories())
-        elif number == '4':
-            print('New income amount:')
-            income = input()
-            print('New income type:')
-            income_type = input()
-            print('New income date:')
-            income_date = input()
-            new_eleme = Income(income,income_type, income_date)
-            money_tracker_object.add_income(new_eleme)
-        elif number == '5':
-            print('New expense amount:')
-            expense = input()
-            print('New expense type:')
-            expense_type = input()
-            print('New expense date:')
-            expense_date = input()
-            new_eleme = Expense(expense,expense_type, expense_date)
-            money_tracker_object.add_expense(new_eleme)
-        else:
-            open('money_tracker.txt', "w").close()
-            f = open('money_tracker.txt', "a")
-            all_user_data = money_tracker_object.data_dictionary
-            for keys, values in all_user_data.items():
-                f.writelines(keys+'\n')
-                for keys1, values1 in all_user_data[keys].items():
-                        for i in range(len(values1)):
-                            f.writelines(str(values1[i][0])+', '+values1[i][1]+', '+'New'+' '+keys1+'\n')
-                break
+            if choice =='3':
+                print(self.MoneyTrackerObject.get_expenses_ordered_by_categories())
+
+            if choice =='4':
+                  print("New income amount:")
+                  money=input()
+                  if int(money) < 0:
+                    raise CustomError('enter a valid amount')
+                  print("New income type:")
+                  income_category=input()
+                  print("New income date:")
+                  date = input()
+                  income = Income(int(money),income_category,date)
+                  self.MoneyTrackerObject.add_new_income(income)
+
+            if choice =='5':
+                  print("New expense amount:")
+                  money=input()
+                  if int(money) < 0:
+                    raise CustomError('enter a valid amount')
+                  print("New expense type:")
+                  expense_category=input()
+                  print("New expense date:")
+                  date=input()
+                  expense = Expense(int(money),expense_category,date)
+                  self.MoneyTrackerObject.add_new_expense(expense)
+
+            if choice=='6':#TODO да направя записването във файл
+                 
+                  flag=False
+            if choice not in ('1','2','3','4','5','6'):
+                raise Exception('Invalid input')
+        
 
 def main():
     parsed_data = ParseData('money_tracker.txt')
-    aggr_object = AggregatedObject(parsed_data.list_of_rows())
-    money_obj = MoneyTracker(aggr_object)
-    menu = Menu()
-    print(menu.call_method_by_option(2,money_obj))
-
-
-if __name__ == '__main__':
+    obj = AggregatedObject(parsed_data.list_of_rows())
+    menu = MoneyTrackerMenu(obj)
+    menu.option()
+if __name__=='__main__':
     main()
+
