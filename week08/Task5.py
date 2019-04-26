@@ -8,7 +8,7 @@ def deep_compare(d1, d2):
 
     if type(d1) == type(d2):
         if isinstance(d1, dict):
-            print('in dict')
+
             if d1.keys() != d2.keys():
                 equal = False
             else:
@@ -46,7 +46,6 @@ def deep_compare(d1, d2):
                                     visited.append(element)
 
         elif isinstance(d1, Iterable) and not isinstance(d1, (set, tuple,list)):
-            print('in iterable')
             if len(d1) != len(d2):
                 equal = False
 
@@ -54,9 +53,11 @@ def deep_compare(d1, d2):
                 equal = deep_compare(d1[i], d2[i])
 
         else:
-            print('in else')
             if d1 != d2:
                 equal = False
+    else:
+        equal = False
+
     return equal
 
 
