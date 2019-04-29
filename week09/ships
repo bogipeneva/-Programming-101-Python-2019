@@ -1,0 +1,13 @@
+select name, country, numguns, launched
+from ships
+left join classes on ships.class == classes.class
+
+select ship 
+from outcomes
+where battle in (select name from battles where year(date) = 1942);
+
+select country, name
+from ships
+left join classes on ships.class == classes.class
+where name not in (select ship from outcomes)
+
