@@ -24,9 +24,12 @@ select AVG(price)
 from pc
 where model in (select model from product where maker = 'A');
 
-select AVG(price)
-from pc
-where model in (select model from Product where maker = 'A');
+select AVG(laptop.price), AVG(pc.price)
+from product
+left join laptop on product.model = laptop.model
+left join pc on product.model = pc.model
+where maker like 'B';
+
 
 select maker, COUNT(model)
 from product
