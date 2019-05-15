@@ -8,20 +8,20 @@ def create_user_table():
     cursor.execute(
         """
         CREATE TABLE IF NOT EXISTS User
-            (id Integer NOT NULL PRIMARY KEY AUTOINCREMENT, full_name Varchar NOT NULL UNIQUE, email Varchar NOT NULL UNIQUE, age Integer NOT NULL, phone Varchar NOT NULL, additional_info Text)
+            (id Integer PRIMARY KEY AUTOINCREMENT, full_name Varchar NOT NULL UNIQUE, email Varchar NOT NULL UNIQUE, age Integer NOT NULL, phone Varchar NOT NULL, additional_info Text)
         """)
     connection.commit()
     connection.close()
 
 
-def add(id, full_name, email, age, phone, additional_info):
+def add(full_name, email, age, phone, additional_info):
     connection = sqlite3.connect('course.db')
     cursor = connection.cursor()
     cursor.execute(
         """
-        INSERT INTO User 
-            VALUES ('{id}', '{full_name}', '{email}', '{age}', '{phone}', '{additional_info}');
-        """.format(id = id, full_name = full_name, email = email, age = age, phone = phone, additional_info = additional_info)
+        INSERT INTO User (full_name, email, age, phone, additional_info)
+            VALUES ('{full_name}', '{email}', '{age}', '{phone}', '{additional_info}');
+        """.format(full_name = full_name, email = email, age = age, phone = phone, additional_info = additional_info)
     )
 
     connection.commit()
@@ -94,7 +94,7 @@ def main():
             user_phone = input('Enter phone:')
             user_additional_info = input('Enter addional info (optional):')
 
-            add(1, user_name, user_email, user_age, user_phone, user_additional_info)
+            add(user_name, user_email, user_age, user_phone, user_additional_info)
 
         elif option == 'list':
             print("""
